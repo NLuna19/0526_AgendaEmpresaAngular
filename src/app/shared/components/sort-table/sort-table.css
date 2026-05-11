@@ -1,0 +1,25 @@
+/* Sort table styles */
+.sortable {
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.sortable:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+table {
+  border-spacing: 0;
+}
+
+thead th {
+  font-weight: 600;
+}
+
+tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}

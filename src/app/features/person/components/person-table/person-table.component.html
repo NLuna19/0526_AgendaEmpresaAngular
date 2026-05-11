@@ -1,0 +1,7 @@
+<app-sort-table
+  [data]="personState().people()"
+  [columns]="columns"
+  [isLoading]="personState().loading()"
+  emptyMessage="No hay personas para mostrar"
+  loadingMessage="Cargando personas..."
+/>

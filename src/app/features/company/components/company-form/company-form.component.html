@@ -1,0 +1,20 @@
+<div class="space-y-4">
+  <app-reactive-form
+    [fields]="fields()"
+    [initialData]="initialData()"
+    (submitForm)="save($event)"
+  />
+
+  @if (direccionInfo) {
+    <div class="rounded border border-gray-300 bg-gray-50 p-4 text-gray-900">
+      <h3 class="mb-3 font-semibold">Información de Dirección</h3>
+      <div class="space-y-2 text-sm">
+        <p><strong>Calle:</strong> {{ direccionInfo.calle }} {{ direccionInfo.numero }}</p>
+        <p><strong>Piso/Depto:</strong> {{ direccionInfo.piso }} {{ direccionInfo.depto }}</p>
+        <p><strong>Ciudad:</strong> {{ direccionInfo.ciudad.nombre }}</p>
+        <p><strong>Provincia:</strong> {{ direccionInfo.ciudad.provincia }}</p>
+        <p><strong>País:</strong> {{ direccionInfo.ciudad.pais }}</p>
+      </div>
+    </div>
+  }
+</div>

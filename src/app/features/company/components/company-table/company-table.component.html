@@ -1,0 +1,10 @@
+<app-sort-table
+  [data]="companyState().companies()"
+  [columns]="columns"
+  [isLoading]="companyState().loading()"
+  [showActions]="true"
+  emptyMessage="No hay empresas para mostrar"
+  loadingMessage="Cargando empresas..."
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+/>

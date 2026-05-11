@@ -1,0 +1,10 @@
+<app-sort-table
+  [data]="cityState().cities()"
+  [columns]="columns"
+  [isLoading]="cityState().loading()"
+  [showActions]="true"
+  emptyMessage="No hay ciudades para mostrar"
+  loadingMessage="Cargando ciudades..."
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+/>

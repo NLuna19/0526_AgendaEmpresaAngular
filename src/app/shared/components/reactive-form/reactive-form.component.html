@@ -1,0 +1,52 @@
+<form [formGroup]="form()" (ngSubmit)="onSubmit()" class="space-y-4">
+  @for (field of fields(); track field.key) {
+    <div class="flex flex-col gap-2">
+      <label [for]="field.key" class="font-medium">
+        {{ field.label }}
+      </label>
+
+      @switch (field.type) {
+        @case ('textarea') {
+          <textarea
+            [id]="field.key"
+            [formControlName]="field.key"
+            [placeholder]="field.placeholder"
+            class="rounded border p-2"
+          ></textarea>
+        }
+
+        @case ('select') {
+          <select [id]="field.key" [formControlName]="field.key" class="rounded border p-2">
+            <option class="text-gray-700" value="">Seleccione</option>
+
+            @for (option of field.options; track option.value) {
+              <option class="text-gray-700" [value]="option.value">
+                {{ option.label }}
+              </option>
+            }
+          </select>
+        }
+
+        @default {
+          <input
+            [id]="field.key"
+            [type]="field.type"
+            [formControlName]="field.key"
+            [placeholder]="field.placeholder"
+            class="rounded border p-2"
+          />
+        }
+      }
+
+      @if (hasError(field.key, 'required')) {
+        <small class="text-red-500"> Campo requerido </small>
+      }
+
+      @if (hasError(field.key, 'email')) {
+        <small class="text-red-500"> Email inválido </small>
+      }
+    </div>
+  }
+
+  <button type="submit" class="rounded bg-black px-4 py-2 text-white">Guardar</button>
+</form>

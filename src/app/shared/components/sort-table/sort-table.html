@@ -1,0 +1,65 @@
+<p-table [value]="data()" [loading]="isLoading()" styleClass="p-datatable-sm">
+  <ng-template pTemplate="header">
+    <tr>
+      @for (column of columns(); track column.field) {
+      <th [pSortableColumn]="column.field">
+        {{ column.label }}
+
+        <p-sortIcon [field]="column.field" />
+      </th>
+      } @if (showActions()) {
+      <th>Acciones</th>
+      }
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      @if (rowTemplate()) {
+
+      <ng-container
+        *ngTemplateOutlet="
+            rowTemplate();
+            context: { $implicit: item }
+          "
+      />
+
+      } @else { @for (column of columns(); track column.field) {
+
+      <td>{{ resolveField(item, column.field) }}</td>
+
+      } }
+
+      <!-- actions -->
+
+      @if (showActions()) {
+
+      <td>
+        <div class="flex items-center gap-1">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-file-edit"
+            class="p-button-text !rounded-md !text-slate-600 hover:!bg-slate-100"
+            (click)="onEdit(item)"
+          ></button>
+
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-text !rounded-md !text-red-500 hover:!bg-red-50"
+            (click)="onDelete(item)"
+          ></button>
+        </div>
+      </td>
+      }
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td [attr.colspan]="columns().length" class="text-center">{{ emptyMessage() }}</td>
+    </tr>
+  </ng-template>
+</p-table>
