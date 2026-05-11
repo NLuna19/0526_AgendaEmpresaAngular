@@ -16,8 +16,8 @@ export class ContactService {
     return this.http.get<Contacto[]>(endpoint);
   }
 
-  getContactById(id: number): Observable<Contacto> {
-    const endpoint = this.apiConfig.contacts.detail(id);
+  getContactById(idEmpresa: number, idPersona: number): Observable<Contacto> {
+    const endpoint = this.apiConfig.contacts.detail(`${idEmpresa}/${idPersona}`);
     return this.http.get<Contacto>(endpoint);
   }
 
@@ -26,13 +26,17 @@ export class ContactService {
     return this.http.post<Contacto>(endpoint, contact);
   }
 
-  updateContact(id: number, contact: Partial<Contacto>): Observable<Contacto> {
-    const endpoint = this.apiConfig.contacts.update(id);
+  updateContact(
+    idEmpresa: number,
+    idPersona: number,
+    contact: Partial<Contacto>
+  ): Observable<Contacto> {
+    const endpoint = this.apiConfig.contacts.update(`${idEmpresa}/${idPersona}`);
     return this.http.put<Contacto>(endpoint, contact);
   }
 
-  deleteContact(id: number): Observable<void> {
-    const endpoint = this.apiConfig.contacts.delete(id);
+  deleteContact(idEmpresa: number, idPersona: number): Observable<void> {
+    const endpoint = this.apiConfig.contacts.delete(`${idEmpresa}/${idPersona}`);
     return this.http.delete<void>(endpoint);
   }
 }

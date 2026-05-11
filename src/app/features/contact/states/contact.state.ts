@@ -44,16 +44,27 @@ export class ContactState {
   }
 
   update(contact: Contacto): void {
-    this.service.updateContact(contact.idContacto, contact).subscribe((updatedContact) => {
-      this._contacts.update((contacts) =>
-        contacts.map((c) => (c.idContacto === updatedContact.idContacto ? updatedContact : c))
-      );
-    });
+    this.service
+      .updateContact(contact.empresa.idEmpresa, contact.persona.idPersona, contact)
+      .subscribe((updatedContact) => {
+        this._contacts.update((contacts) =>
+          contacts.map((c) =>
+            c.empresa.idEmpresa === updatedContact.empresa.idEmpresa &&
+            c.persona.idPersona === updatedContact.persona.idPersona
+              ? updatedContact
+              : c
+          )
+        );
+      });
   }
 
-  delete(id: number): void {
-    this.service.deleteContact(id).subscribe(() => {
-      this._contacts.update((contacts) => contacts.filter((c) => c.idContacto !== id));
+  delete(idEmpresa: number, idPersona: number): void {
+    this.service.deleteContact(idEmpresa, idPersona).subscribe(() => {
+      this._contacts.update((contacts) =>
+        contacts.filter(
+          (c) => !(c.empresa.idEmpresa === idEmpresa && c.persona.idPersona === idPersona)
+        )
+      );
     });
   }
 }

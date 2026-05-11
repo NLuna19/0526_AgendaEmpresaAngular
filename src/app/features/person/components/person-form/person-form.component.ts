@@ -5,29 +5,43 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, output } f
 import { Direccion } from '@/app/features/address/models/direccion';
 import { Ciudad } from '@/app/features/city/models/ciudad';
 import { Validators } from '@angular/forms';
-import { Empresa } from '../../models/empresa';
-import { CompanyService } from '../../services/company.service';
+import { Persona } from '../../models/persona';
+import { PersonService } from '../../services/person.service';
 
 @Component({
-  selector: 'app-company-form',
+  selector: 'app-person-form',
   imports: [ReactiveFormComponent],
-  templateUrl: './company-form.component.html',
+  templateUrl: './person-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompanyFormComponent {
-  service = inject(CompanyService);
+export class PersonFormComponent {
+  service = inject(PersonService);
 
-  empresa = input<Empresa | undefined>();
+  persona = input<Persona | undefined>();
   addressOptions = input<{ label: string; value: number }[]>([]);
   formSubmitted = output<void>();
 
   readonly fields = computed<FormField[]>(() => [
     {
-      key: 'razonSocial',
-      label: 'Razón Social',
+      key: 'nombre',
+      label: 'Nombre',
       type: 'text',
       validators: [Validators.required],
-      placeholder: 'Nombre de la empresa',
+      placeholder: 'Nombre de la persona',
+    },
+    {
+      key: 'apellido',
+      label: 'Apellido',
+      type: 'text',
+      validators: [Validators.required],
+      placeholder: 'Apellido de la persona',
+    },
+    {
+      key: 'email',
+      label: 'Email',
+      type: 'email',
+      validators: [Validators.required, Validators.email],
+      placeholder: 'Email de la persona',
     },
     {
       key: 'telefono',
@@ -92,26 +106,28 @@ export class CompanyFormComponent {
   ]);
 
   readonly initialData = computed(() => {
-    const empresaData = this.empresa();
+    const personaData = this.persona();
 
-    if (!empresaData) return undefined;
+    if (!personaData) return undefined;
 
     return {
-      razonSocial: empresaData.razonSocial,
-      telefono: empresaData.telefono,
-      calle: empresaData.direccion.calle,
-      numero: empresaData.direccion.numero,
-      piso: empresaData.direccion.piso,
-      depto: empresaData.direccion.depto,
-      cp: empresaData.direccion.cp,
-      ciudad: empresaData.direccion.ciudad.nombre,
-      provincia: empresaData.direccion.ciudad.provincia,
-      pais: empresaData.direccion.ciudad.pais,
+      nombre: personaData.nombre,
+      apellido: personaData.apellido,
+      email: personaData.email,
+      telefono: personaData.telefono,
+      calle: personaData.direccion.calle,
+      numero: personaData.direccion.numero,
+      piso: personaData.direccion.piso,
+      depto: personaData.direccion.depto,
+      cp: personaData.direccion.cp,
+      ciudad: personaData.direccion.ciudad.nombre,
+      provincia: personaData.direccion.ciudad.provincia,
+      pais: personaData.direccion.ciudad.pais,
     };
   });
 
   get direccionInfo() {
-    return this.empresa()?.direccion;
+    return this.persona()?.direccion;
   }
 
   save(formValue: any): void {
@@ -132,32 +148,34 @@ export class CompanyFormComponent {
       ciudad: _ciudadData,
     };
 
-    const empresaData: Partial<Empresa> = {
-      razonSocial: formValue.razonSocial,
+    const personaData: Partial<Persona> = {
+      nombre: formValue.nombre,
+      apellido: formValue.apellido,
+      email: formValue.email,
       telefono: formValue.telefono,
       direccion: _direccionData as Direccion,
     };
 
-    const isEditing = !!this.empresa();
+    const isEditing = !!this.persona();
 
     if (isEditing) {
-      this.service.updateCompany(this.empresa()!.idEmpresa, empresaData).subscribe({
+      this.service.updatePerson(this.persona()!.idPersona, personaData).subscribe({
         next: (response) => {
-          console.log('Company updated successfully:', response);
+          console.log('Person updated successfully:', response);
           this.formSubmitted.emit();
         },
         error: (error) => {
-          console.error('Error updating company:', error);
+          console.error('Error updating person:', error);
         },
       });
     } else {
-      this.service.createCompany(empresaData).subscribe({
+      this.service.createPerson(personaData).subscribe({
         next: (response) => {
-          console.log('Company created successfully:', response);
+          console.log('Person created successfully:', response);
           this.formSubmitted.emit();
         },
         error: (error) => {
-          console.error('Error creating company:', error);
+          console.error('Error creating person:', error);
         },
       });
     }

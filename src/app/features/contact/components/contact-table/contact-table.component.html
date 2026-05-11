@@ -1,0 +1,10 @@
+<app-sort-table
+  [data]="data"
+  [columns]="columns"
+  [isLoading]="contactState().loading()"
+  [showActions]="true"
+  emptyMessage="No hay contactos para mostrar"
+  loadingMessage="Cargando contactos..."
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+/>

@@ -1,0 +1,28 @@
+<div class="space-y-4">
+  <button
+    (click)="navigateBack()"
+    class="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
+  >
+    Volver
+  </button>
+
+  @if (loading()) {
+    <p>Cargando...</p>
+  }
+
+  @if (error()) {
+    <p class="text-red-500">{{ error() }}</p>
+  }
+
+  @if (!loading()) {
+    <h1 class="text-2xl font-bold">
+      {{ isEditing() ? 'Editar Dirección' : 'Nueva Dirección' }}
+    </h1>
+
+    <app-address-form
+      [address]="address()"
+      [cityOptions]="cityOptions()"
+      (formSubmitted)="onFormSubmitted()"
+    />
+  }
+</div>

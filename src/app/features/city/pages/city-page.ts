@@ -1,3 +1,4 @@
+import { BackHomeButtonComponent, BasicButtonComponent } from '@/app/shared/components';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,7 +7,7 @@ import { CityState } from '../states/city.state';
 
 @Component({
   selector: 'app-city-page',
-  imports: [CommonModule, CityTable],
+  imports: [CommonModule, CityTable, BasicButtonComponent, BackHomeButtonComponent],
   templateUrl: './city-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -14,12 +15,11 @@ export class CityPage implements OnInit {
   private router: Router = inject(Router);
   state = inject(CityState);
 
+  addBtnIcon = 'pi-plus';
+  addBtnLabel = 'Agregar Ciudad';
+
   ngOnInit(): void {
     this.state.load();
-  }
-
-  navigateBack(): void {
-    this.router.navigate(['/home']);
   }
 
   addCity(): void {

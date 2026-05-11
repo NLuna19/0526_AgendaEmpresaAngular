@@ -1,0 +1,10 @@
+<app-sort-table
+  [data]="addressState().addresses()"
+  [columns]="columns"
+  [isLoading]="addressState().loading()"
+  [showActions]="true"
+  emptyMessage="No hay direcciones para mostrar"
+  loadingMessage="Cargando direcciones..."
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+/>

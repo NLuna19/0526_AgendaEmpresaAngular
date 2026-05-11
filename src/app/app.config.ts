@@ -6,7 +6,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { routes } from './app.routes';
 
-import Aura from '@primeuix/themes/aura';
+import MATERIAL from '@primeuix/themes/material';
 import { providePrimeNG } from 'primeng/config';
 
 export const appConfig: ApplicationConfig = {
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptors([apiInterceptor])),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: MATERIAL,
       },
     }),
   ],

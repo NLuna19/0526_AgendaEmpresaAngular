@@ -1,4 +1,9 @@
-<button (click)="addCity()">Agregar Ciudad</button>
-<button (click)="navigateBack()">Volver</button>
+<div class="flex flex-col justify-between gap-2 p-4">
+  <div class="flex flex-row justify-between gap-2">
+    <app-back-home-button />
 
-<app-city-table [cityState]="state" />
+    <app-basic-button [label]="addBtnLabel" [icon]="addBtnIcon" (onClick)="addCity()" />
+  </div>
+
+  <app-city-table [cityState]="state" />
+</div>
