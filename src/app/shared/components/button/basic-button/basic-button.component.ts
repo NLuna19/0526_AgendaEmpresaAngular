@@ -4,8 +4,14 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-basic-button',
   template: `
-    <div class="card flex justify-center">
-      <button pButton (click)="_onClick($event)" size="small" color="primary">
+    <div class="card flex justify-center" [class]="classes()?.container">
+      <button
+        pButton
+        (click)="_onClick($event)"
+        size="small"
+        color="primary"
+        [class]="classes()?.button"
+      >
         @if (icon().length > 0) {
           <i [class]="'pi ' + icon()" pButtonIcon></i>
         }
@@ -20,6 +26,7 @@ import { ButtonModule } from 'primeng/button';
 export class BasicButtonComponent {
   label = input<string>('button');
   icon = input<string>('');
+  classes = input<{ container?: string; button?: string } | undefined>(undefined);
   onClick = output<Event>();
 
   _onClick(event: Event): void {

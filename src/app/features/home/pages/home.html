@@ -1,17 +1,35 @@
-<p>home works!</p>
+<div class="flex flex-col items-start gap-4 p-2">
+  <h1 class="text-2xl font-bold">Bienvenido a la Agenda de Empresas</h1>
+  <br />
 
-<div>
-  <button (click)="navigateTo(pageRoutes.city)">Ver ciudades</button>
-</div>
-<div>
-  <button (click)="navigateTo(pageRoutes.address)">Ver direcciones</button>
-</div>
-<div>
-  <button (click)="navigateTo(pageRoutes.person)">Ver personas</button>
-</div>
-<div>
-  <button (click)="navigateTo(pageRoutes.company)">Ver empresas</button>
-</div>
-<div>
-  <button (click)="navigateTo(pageRoutes.contact)">Ver contactos</button>
+  <app-basic-button
+    [label]="buttonConfig.city.label"
+    [icon]="buttonConfig.city.icon"
+    (onClick)="navigateTo(buttonConfig.city.route)"
+    [classes]="{button: '!w-[9rem]'}"
+  />
+  <app-basic-button
+    [label]="buttonConfig.address.label"
+    [icon]="buttonConfig.address.icon"
+    (onClick)="navigateTo(buttonConfig.address.route)"
+    [classes]="{button: '!w-[9rem]'}"
+  />
+  <app-basic-button
+    [label]="buttonConfig.person.label"
+    [icon]="buttonConfig.person.icon"
+    (onClick)="navigateTo(buttonConfig.person.route)"
+    [classes]="{button: '!w-[9rem]'}"
+  />
+  <app-basic-button
+    [label]="buttonConfig.company.label"
+    [icon]="buttonConfig.company.icon"
+    (onClick)="navigateTo(buttonConfig.company.route)"
+    [classes]="{button: '!w-[9rem]'}"
+  />
+  <app-basic-button
+    [label]="buttonConfig.contact.label"
+    [icon]="buttonConfig.contact.icon"
+    (onClick)="navigateTo(buttonConfig.contact.route)"
+    [classes]="{button: '!w-[9rem]'}"
+  />
 </div>

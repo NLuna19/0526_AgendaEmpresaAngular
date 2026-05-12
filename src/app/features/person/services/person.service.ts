@@ -35,4 +35,15 @@ export class PersonService {
     const endpoint = this.apiConfig.people.delete(id);
     return this.http.delete<void>(endpoint);
   }
+
+  searchPersonByCities(name: string, lastName: string, cities: string[]): Observable<Persona[]> {
+    const endpoint = this.apiConfig.search.peopleByCities();
+    return this.http.get<Persona[]>(endpoint, {
+      params: {
+        nombre: name,
+        apellido: lastName,
+        ciudades: cities,
+      },
+    });
+  }
 }

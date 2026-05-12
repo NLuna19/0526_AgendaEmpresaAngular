@@ -69,6 +69,10 @@ export class ApiConfig {
    * Search endpoints
    */
 
+  readonly search = {
+    peopleByCities: () => `${this.baseUrl}/api/personas/busqueda/nombre-apellido-ciudades`,
+  };
+
   /**
    * Get the base API URL
    */

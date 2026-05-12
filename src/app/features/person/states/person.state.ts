@@ -56,4 +56,8 @@ export class PersonState {
       this._people.update((people) => people.filter((p) => p.idPersona !== id));
     });
   }
+
+  setSearchResults(people: Persona[]): void {
+    this._people.set(people);
+  }
 }

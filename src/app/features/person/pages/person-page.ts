@@ -2,12 +2,19 @@ import { BackHomeButtonComponent, BasicButtonComponent } from '@/app/shared/comp
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PersonSearchComponent } from '../components/person-search/person-search.component';
 import { PersonTable } from '../components/person-table/person-table.component';
 import { PersonState } from '../states/person.state';
 
 @Component({
   selector: 'app-person-page',
-  imports: [CommonModule, PersonTable, BasicButtonComponent, BackHomeButtonComponent],
+  imports: [
+    CommonModule,
+    PersonTable,
+    BasicButtonComponent,
+    BackHomeButtonComponent,
+    PersonSearchComponent,
+  ],
   templateUrl: './person-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

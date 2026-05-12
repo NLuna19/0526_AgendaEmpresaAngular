@@ -1,26 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject, type OnInit } from '@angular/core';
+import { BasicButtonComponent } from '@/app/shared/components/button/basic-button/basic-button.component';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { HomePageButtonConfig } from '../constants';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [BasicButtonComponent],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class HomePage implements OnInit {
+export class HomePage {
   private router: Router = inject(Router);
-
-  //todo move to a better place
-  pageRoutes = {
-    city: '/city',
-    address: '/address',
-    person: '/person',
-    company: '/company',
-    contact: '/contact',
-  };
-
-  ngOnInit(): void {}
+  buttonConfig = HomePageButtonConfig;
 
   navigateTo(route: string) {
     this.router.navigate([route]);

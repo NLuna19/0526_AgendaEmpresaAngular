@@ -1,59 +1,175 @@
-# AgendaEmpresa
+````md
+# Agenda Empresarial
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.2.
+Aplicación web desarrollada en **Angular v21** orientada a la gestión de información empresarial mediante una interfaz moderna, intuitiva y escalable.
 
-## Development server
+El sistema permite administrar distintas entidades relacionadas con la organización, consumiendo múltiples endpoints para realizar operaciones CRUD y aplicando un manejo básico de estado para optimizar la actualización y sincronización de datos en la interfaz.
 
-To start a local development server, run:
+## 🚀 Tecnologías utilizadas
 
-```bash
-ng serve
+- **Angular v21**
+- **TypeScript**
+- **PrimeNG** (componentes UI)
+- **Tailwind CSS** (estilos complementarios y personalización)
+- **RxJS**
+- **State Management básico con Signals / manejo reactivo de estado**
+- Consumo de APIs REST
+
+---
+
+## 📌 Funcionalidades principales
+
+### Gestión de entidades
+
+La aplicación permite administrar las siguientes entidades:
+
+- **Contacto**
+- **Empresa**
+- **Persona**
+- **Dirección**
+- **Ciudad**
+
+Cada módulo cuenta con integración mediante endpoints para operaciones como:
+
+- Listado de registros
+- Alta de nuevos registros
+- Modificación de información existente
+- Eliminación de registros
+- Consulta individual por identificador
+
+---
+
+### 🔎 Buscador de personas
+
+Actualmente, el sistema incorpora un buscador funcional dentro del módulo **Personas**, permitiendo filtrar y localizar registros de manera rápida.
+
+Características:
+
+- Búsqueda dinámica
+- Actualización reactiva de resultados
+- Integración directa con el estado de la vista
+
+---
+
+### ⚙️ Manejo de estado
+
+Se implementa un manejo básico de estado para:
+
+- Centralizar información de vistas
+- Reducir renderizados innecesarios
+- Mantener sincronización entre componentes
+- Mejorar la experiencia de usuario ante cambios de datos
+
+---
+
+## 🎨 Interfaz de usuario
+
+La UI fue construida combinando:
+
+### **PrimeNG**
+
+### **Tailwind CSS**
+
+---
+
+## 🏗️ Arquitectura del proyecto
+
+El proyecto sigue una estructura modular orientada a escalabilidad, separando responsabilidades entre:
+
+### Estructura de carpetas
+
+```
+src/
+├── app/
+│   ├── core/                         # Funcionalidad central reutilizable
+│   │   ├── config/
+│   │   │   └── api.config.ts         # Configuración de endpoints API
+│   │   └── interceptors/
+│   │       └── api.interceptor.ts    # Interceptor HTTP global
+│   │
+│   ├── features/                     # Módulos de negocio (lazy-loadable)
+│   │   ├── address/
+│   │   │   ├── components/           # Componentes de UI (form, table)
+│   │   │   ├── models/               # Interfaces y tipos
+│   │   │   ├── pages/                # Componentes de página
+│   │   │   ├── services/             # Lógica de negocio
+│   │   │   └── states/               # Gestión de estado con Signals
+│   │   ├── city/
+│   │   ├── company/
+│   │   ├── contact/
+│   │   ├── person/
+│   │   └── home/                     # Página principal
+│   │
+│   ├── shared/                        # Componentes y servicios compartidos
+│   │   ├── components/
+│   │   │   ├── button/               # Botones reutilizables
+│   │   │   ├── search/               # Componentes de búsqueda
+│   │   │   │   ├── search.component.ts          # Búsqueda simple
+│   │   │   │   └── advanced-search/            # Búsqueda con multiselect
+│   │   │   ├── reactive-form/        # Componentes de formulario
+│   │   │   └── sort-table/           # Tabla con ordenamiento
+│   │   └── models/
+│   │
+│   └── app.ts                         # Componente raíz
+├── assets/                            # Archivos estáticos (imágenes, iconos)
+├── environments/                      # Configuración por entorno
+│   ├── environment.ts
+│   ├── environment.development.ts
+│   └── environment.prod.ts
+└── styles.css                         # Estilos globales
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Patrones de arquitectura
 
-## Code scaffolding
+- **Feature-based modules**: Cada módulo (address, company, person, etc.) es independiente y contiene toda su lógica
+- **Separation of concerns**:
+  - `components/` → UI sin lógica de negocio
+  - `services/` → Lógica de negocio y comunicación con API
+  - `states/` → Gestión de estado reactivo con Signals
+  - `models/` → Tipado TypeScript
+- **Shared components**: Componentes reutilizables centralizados (botones, tablas, búsqueda)
+- **Core utilities**: Configuración global, interceptores, servicios únicos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 📈 Próximas mejoras
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Extender el buscador al resto de entidades
+- Mejorar el manejo global de estados
+- Incorporar paginación y filtros avanzados
+- Mejora de validaciones (más robustas)
+- Optimización de experiencia responsive
+- Asignacion de contacto a empresa con drag&drop
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## ▶️ Ejecución del proyecto
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Instalar dependencias:
 
 ```bash
-ng test
+npm install
 ```
+````
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Iniciar entorno de desarrollo:
 
 ```bash
-ng e2e
+npm run start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+La aplicación estará disponible en:
 
-## Additional Resources
+```bash
+http://localhost:4200
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## 👨‍💻 Autor
+
+Nicolas Omar Luna
+
+```
+
+```
