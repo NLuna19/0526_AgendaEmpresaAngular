@@ -1,4 +1,3 @@
-````md
 # Agenda Empresarial
 
 Aplicación web desarrollada en **Angular v21** orientada a la gestión de información empresarial mediante una interfaz moderna, intuitiva y escalable.
@@ -169,7 +168,3 @@ http://localhost:4200
 ## 👨‍💻 Autor
 
 Nicolas Omar Luna
-
-```
-
-```
