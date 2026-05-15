@@ -1,6 +1,6 @@
 <div class="grid grid-cols-2 gap-4">
-  <!-- Lista origen -->
-  <div class="col-1" pDroppable="items" (onDrop)="drop('left')">
+  <!-- Lista left -->
+  <div class="col-1" pDroppable="items" (onDrop)="drop($event, 'left')">
     <div class="border-round surface-border min-h-20 border p-2">
       @for (item of left; track item.id) {
         <div
@@ -15,8 +15,8 @@
     </div>
   </div>
 
-  <!-- Lista destino -->
-  <div class="col-2" pDroppable="items" (onDrop)="drop('right')">
+  <!-- Lista right -->
+  <div class="col-2" pDroppable="items" (onDrop)="drop($event, 'right')">
     <div class="border-round surface-border min-h-20 border p-2">
       @for (item of right; track item.id) {
         <div
