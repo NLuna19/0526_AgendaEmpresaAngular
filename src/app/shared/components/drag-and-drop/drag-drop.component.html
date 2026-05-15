@@ -1,0 +1,33 @@
+<div class="grid grid-cols-2 gap-4">
+  <!-- Lista origen -->
+  <div class="col-1" pDroppable="items" (onDrop)="drop('left')">
+    <div class="border-round surface-border min-h-20 border p-2">
+      @for (item of left; track item.id) {
+        <div
+          class="border-round surface-card shadow-1 mb-2 cursor-move border-2 border-amber-500 p-3"
+          pDraggable="items"
+          (onDragStart)="dragStart(item, 'left')"
+          (onDragEnd)="dragEnd()"
+        >
+          {{ item.label }}
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Lista destino -->
+  <div class="col-2" pDroppable="items" (onDrop)="drop('right')">
+    <div class="border-round surface-border min-h-20 border p-2">
+      @for (item of right; track item.id) {
+        <div
+          class="border-round surface-card shadow-1 mb-2 cursor-move border-2 border-amber-500 p-3"
+          pDraggable="items"
+          (onDragStart)="dragStart(item, 'right')"
+          (onDragEnd)="dragEnd()"
+        >
+          {{ item.label }}
+        </div>
+      }
+    </div>
+  </div>
+</div>
